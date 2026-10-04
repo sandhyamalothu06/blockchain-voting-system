@@ -1,0 +1,98 @@
+<%- include("partials/header") %>
+
+<div class="container mt-4">
+
+    <% if (winner) { %>
+
+<div class="alert alert-success text-center">
+
+    <h3>🏆 Election Winner</h3>
+
+    <h2><%= winner.candidateName %></h2>
+
+    <h4><%= winner.partyName %></h4>
+
+    <h5>Total Votes : <%= winner.totalVotes %></h5>
+
+</div>
+
+<% } %>
+
+    <% if (candidates.length === 0) { %>
+
+        <div class="alert alert-warning text-center">
+            No candidates available.
+        </div>
+
+    <% } else { %>
+
+        <table class="table table-bordered table-striped">
+
+            <thead class="table-dark">
+                <tr>
+                    <th>Candidate</th>
+                    <th>Party</th>
+                    <th>Total Votes</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <% candidates.forEach(candidate => { %>
+
+                    <tr>
+                        <td><%= candidate.candidateName %></td>
+                        <td><%= candidate.partyName %></td>
+                        <td><%= candidate.totalVotes %></td>
+                    </tr>
+
+                <% }) %>
+
+            </tbody>
+
+        </table>
+
+        <hr>
+
+        <canvas id="voteChart"></canvas>
+
+    <% } %>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const labels = <%- JSON.stringify(candidates.map(c => c.candidateName)) %>;
+const votes = <%- JSON.stringify(candidates.map(c => c.totalVotes)) %>;
+
+const ctx = document.getElementById("voteChart");
+
+if(ctx){
+
+new Chart(ctx,{
+type:"bar",
+data:{
+labels:labels,
+datasets:[{
+label:"Votes",
+data:votes,
+backgroundColor:"blue"
+}]
+},
+options:{
+responsive:true,
+scales:{
+y:{
+beginAtZero:true
+}
+}
+}
+});
+
+}
+
+</script>
+
+<%- include("partials/footer") %>

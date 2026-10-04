@@ -1,0 +1,202 @@
+<%- include("partials/header") %>
+
+<div class="container mt-5">
+
+    <div class="row mb-5">
+
+    <div class="col-md-3">
+
+        <div class="card bg-primary text-white shadow">
+
+            <div class="card-body text-center">
+
+                <h5>Total Users</h5>
+
+                <h2><%= totalUsers %></h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card bg-success text-white shadow">
+
+            <div class="card-body text-center">
+
+                <h5>Total Candidates</h5>
+
+                <h2><%= totalCandidates %></h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card bg-warning shadow">
+
+            <div class="card-body text-center">
+
+                <h5>Total Votes</h5>
+
+                <h2><%= totalVotes %></h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card bg-dark text-white shadow">
+
+            <div class="card-body text-center">
+
+                <h5>Blockchain Blocks</h5>
+
+                <h2><%= totalBlocks %></h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <div class="row">
+
+        <!-- Add Candidate -->
+        <div class="col-md-6">
+
+            <div class="card shadow p-4">
+
+                <h3>Add Candidate</h3>
+
+                <form action="/addCandidate" method="POST">
+
+                    <div class="mb-3">
+                        <label class="form-label">Candidate Name</label>
+                        <input type="text" name="candidateName" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Party Name</label>
+                        <input type="text" name="partyName" class="form-control" required>
+                    </div>
+
+                    <button class="btn btn-success w-100" type="submit">
+                        ➕ Add Candidate
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-md-6">
+
+            <div class="card shadow p-4">
+
+                <h3>Quick Links</h3>
+
+                <a href="/vote" class="btn btn-primary mb-3 w-100">
+                    🗳 Go to Voting
+                </a>
+
+                <a href="/results" class="btn btn-warning mb-3 w-100">
+                    🏆 Election Results
+                </a>
+
+                <a href="/blockchain" class="btn btn-dark mb-3 w-100">
+                    🔗 Blockchain Explorer
+                </a>
+
+                <a href="/verify" class="btn btn-info w-100">
+                    ✅ Verify Blockchain
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr class="my-5">
+
+    <h2 class="text-center mb-4">
+        📋 Candidate List
+    </h2>
+
+    <table class="table table-bordered table-hover">
+
+        <thead class="table-dark">
+
+            <tr>
+                <th>Name</th>
+                <th>Party</th>
+                <th>Total Votes</th>
+                <th>Action</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <% candidates.forEach(candidate => { %>
+
+            <tr>
+
+                <td><%= candidate.candidateName %></td>
+
+                <td><%= candidate.partyName %></td>
+
+                <td><%= candidate.totalVotes %></td>
+
+                <td>
+
+    <a
+        href="/editCandidate/<%= candidate._id %>"
+        class="btn btn-warning btn-sm">
+
+        ✏ Edit
+
+    </a>
+
+    <form
+        action="/deleteCandidate/<%= candidate._id %>"
+        method="POST"
+        style="display:inline;">
+
+        <button
+            type="submit"
+            class="btn btn-danger btn-sm"
+            onclick="return confirm('Delete this candidate?')">
+
+            🗑 Delete
+
+        </button>
+
+    </form>
+
+</td>
+
+            </tr>
+
+            <% }) %>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<%- include("partials/footer") %>

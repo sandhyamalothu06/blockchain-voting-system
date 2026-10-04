@@ -1,0 +1,53 @@
+<%- include("partials/header") %>
+
+<div class="card shadow-lg p-4">
+
+    <h2>Welcome <%= user.fullName %> 🎉</h2>
+
+    <hr>
+
+    <p><strong>Email:</strong> <%= user.email %></p>
+
+    <p><strong>Role:</strong> <%= user.role %></p>
+
+    <br>
+
+    <a href="/vote" class="btn btn-primary mb-2">
+        🗳 Go to Voting Page
+    </a>
+
+    <br>
+
+    <% if(user.role === "admin"){ %>
+
+    <a href="/results" class="btn btn-warning mb-2">
+        🏆 Election Results
+    </a>
+
+    <br>
+
+    <a href="/blockchain" class="btn btn-success mb-2">
+        🔗 Blockchain Explorer
+    </a>
+
+    <br>
+
+    <a href="/verify" class="btn btn-info mb-2">
+        ✅ Verify Blockchain
+    </a>
+
+<% } %>
+
+    <% if(user.role === "admin"){ %>
+
+        <br>
+
+        <a href="/admin" class="btn btn-dark">
+            🛡 Admin Dashboard
+        </a>
+
+    <% } %>
+
+</div>
+
+<%- include("partials/footer") %>

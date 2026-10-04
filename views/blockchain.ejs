@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Blockchain Explorer</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#f5f5f5;
+}
+
+.container{
+    width:90%;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+}
+
+.block{
+
+    background:white;
+    padding:20px;
+    margin:20px;
+    border-radius:10px;
+    box-shadow:0px 0px 10px gray;
+
+}
+
+.hash{
+
+    word-wrap:break-word;
+    color:green;
+}
+
+.prev{
+
+    word-wrap:break-word;
+    color:red;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🔗 Blockchain Explorer</h1>
+
+<% blocks.forEach((block,index)=>{ %>
+
+<div class="block">
+
+<h2>Block #<%= index+1 %></h2>
+
+<p><b>Candidate :</b> <%= block.candidateId.candidateName %></p>
+
+<p><b>Party :</b> <%= block.candidateId.partyName %></p>
+
+<p><b>Voter :</b> <%= block.voterId.fullName %></p>
+
+<p><b>Timestamp :</b> <%= block.timestamp %></p>
+
+<p class="prev">
+
+<b>Previous Hash</b><br>
+
+<%= block.previousHash %>
+
+</p>
+
+<p class="hash">
+
+<b>Current Hash</b><br>
+
+<%= block.currentHash %>
+
+</p>
+
+</div>
+
+<% }) %>
+
+<br>
+
+<center>
+
+<a href="/dashboard">Back to Dashboard</a>
+
+</center>
+
+</div>
+
+</body>
+
+</html>

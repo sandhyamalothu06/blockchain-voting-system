@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Voter Registration</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+    <div class="register-container">
+
+        <h1>Voter Registration</h1>
+
+        <p>Create your account to vote securely.</p>
+
+        <form action="/register" method="POST">
+
+            <div class="input-box">
+    <input type="text" name="fullName" placeholder="Full Name" required>
+</div>
+
+<div class="input-box">
+    <input type="text" name="aadhaarNumber" placeholder="Aadhaar Number" required>
+</div>
+
+<div class="input-box">
+    <input type="text" name="voterId" placeholder="Voter ID" required>
+</div>
+
+<div class="input-box">
+    <input type="email" name="email" placeholder="Email Address" required>
+</div>
+
+<div class="input-box">
+    <input type="password" name="password" placeholder="Password" required>
+</div>
+
+<button type="submit">Register</button>
+
+        </form>
+
+        <p>
+            Already have an account?
+            <a href="/login">Login</a>
+        </p>
+
+    </div>
+
+</body>
+
+</html>
